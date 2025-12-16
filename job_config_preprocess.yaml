@@ -1,0 +1,21 @@
+name: preprocess-data
+
+entrypoint: >
+  python src/cpsc_5800_final_project/scripts/preprocess_data.py 
+  --output /mnt/shared_storage/preprocessed_data 
+  --max-fovs 50 
+  --num-workers 8
+
+working_dir: .
+
+runtime_env:
+  env_vars:
+    GCS_BUCKET: ${GCS_BUCKET}
+    GCS_PREFIX: ${GCS_PREFIX}
+  pip:
+    - numpy
+    - gcsfs
+    - pyyaml
+    - scikit-image
+    - tifffile
+

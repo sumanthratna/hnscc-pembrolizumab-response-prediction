@@ -1,0 +1,102 @@
+# Marker Panel Configuration for FAST Multiplex Imaging
+# Source: bCPS_Panel.csv
+# 21 protein markers across 7 imaging cycles (w2=FITC, w3=Cy3, w4=Cy5)
+
+markers:
+  # Cycle 1: PD-L1/PD-1 axis markers
+  - name: "PDL1"
+    cycle: 1
+    channel: 2              # w2 (FITC)
+    index: 0
+  - name: "CD45"            # Pan-leukocyte marker
+    cycle: 1
+    channel: 3              # w3 (Cy3)
+    index: 1
+  - name: "PD1"
+    cycle: 1
+    channel: 4              # w4 (Cy5)
+    index: 2
+
+  # Cycle 2: T-cell and tumor markers
+  - name: "FoxP3"           # Regulatory T-cells
+    cycle: 2
+    channel: 2
+    index: 3
+  - name: "TCF1"            # Stem-like T-cells
+    cycle: 2
+    channel: 3
+    index: 4
+  - name: "p63"             # Squamous cell marker
+    cycle: 2
+    channel: 4
+    index: 5
+
+  # Cycle 3: Lymphocyte and macrophage markers
+  - name: "CD3"             # T-cells
+    cycle: 3
+    channel: 2
+    index: 6
+  - name: "CD163"           # M2 macrophages
+    cycle: 3
+    channel: 3
+    index: 7
+  - name: "CD20"            # B-cells
+    cycle: 3
+    channel: 4
+    index: 8
+
+  # Cycle 4: Dendritic cells and immune checkpoints
+  - name: "LAMP3"           # Mature dendritic cells
+    cycle: 4
+    channel: 2
+    index: 9
+  - name: "CD11b"           # Myeloid cells
+    cycle: 4
+    channel: 3
+    index: 10
+  - name: "CTLA4"           # Immune checkpoint
+    cycle: 4
+    channel: 4
+    index: 11
+
+  # Cycle 5: Myeloid and T-cell markers
+  - name: "CD11c"           # Dendritic cells
+    cycle: 5
+    channel: 2
+    index: 12
+  - name: "CD8"             # Cytotoxic T-cells (KEY for anti-PD1 response!)
+    cycle: 5
+    channel: 3
+    index: 13
+  - name: "CD66b"           # Neutrophils
+    cycle: 5
+    channel: 4
+    index: 14
+
+  # Cycle 6: Monocyte/macrophage markers
+  - name: "CD14"            # Monocytes
+    cycle: 6
+    channel: 2
+    index: 15
+  - name: "CD68"            # Macrophages
+    cycle: 6
+    channel: 3
+    index: 16
+  - name: "KI67"            # Proliferation marker
+    cycle: 6
+    channel: 4
+    index: 17
+
+  # Cycle 7: Additional markers
+  - name: "Quad"            # Quadrant marker (technical)
+    cycle: 7
+    channel: 2
+    index: 18
+  - name: "CD4"             # Helper T-cells
+    cycle: 7
+    channel: 3
+    index: 19
+  - name: "panCK"           # Pan-cytokeratin (tumor cells)
+    cycle: 7
+    channel: 4
+    index: 20

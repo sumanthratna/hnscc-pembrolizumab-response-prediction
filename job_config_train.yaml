@@ -1,0 +1,17 @@
+name: train
+
+entrypoint: python src/cpsc_5800_final_project/scripts/train.py
+
+working_dir: .
+
+runtime_env:
+  pip:
+    - torch
+    - torchvision
+    - numpy
+    - scikit-learn
+    - scikit-image
+    - albumentations
+    - pyyaml
+    - ray[data,train]
+
