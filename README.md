@@ -46,7 +46,7 @@ export GCS_PREFIX="subdirectory"
 The job configs automatically install dependencies. For local development:
 
 ```bash
-pip install torch torchvision numpy scikit-learn scikit-image albumentations gcsfs pyyaml tifffile ray[data,train]
+python3 -m pip install torch torchvision numpy scikit-learn scikit-image albumentations gcsfs pyyaml tifffile "ray[data,train]"
 ```
 
 ## Running on Anyscale
