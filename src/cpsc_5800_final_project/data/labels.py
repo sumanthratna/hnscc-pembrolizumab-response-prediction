@@ -9,16 +9,17 @@ from dataclasses import dataclass
 @dataclass
 class PatientInfo:
     """Complete patient information from labels CSV."""
+
     sample_id: str
-    outcome: str           # "Responder" or "NonResponder"
-    response_group: str    # "CR", "PR", or "PD"
-    days_elapsed: int      # Survival/follow-up time
-    label: int             # Binary: 1=Responder, 0=NonResponder
-    
+    outcome: str  # "Responder" or "NonResponder"
+    response_group: str  # "CR", "PR", or "PD"
+    days_elapsed: int  # Survival/follow-up time
+    label: int  # Binary: 1=Responder, 0=NonResponder
+
     @property
     def is_responder(self) -> bool:
         return self.label == 1
-    
+
     @property
     def response_code(self) -> int:
         """Ordinal response: 0=PD, 1=PR, 2=CR"""
@@ -28,27 +29,27 @@ class PatientInfo:
 def load_patient_info(csv_path: str | Path) -> Dict[str, PatientInfo]:
     """
     Load complete patient information from CSV.
-    
+
     Args:
         csv_path: Path to CSV with columns: SampleID, Outcome, ResponseGroup, DaysElapsed
-    
+
     Returns:
         Dictionary mapping sample_id -> PatientInfo
     """
     patients = {}
-    
+
     with open(csv_path, "r", encoding="utf-8-sig") as f:
         reader = csv.DictReader(f)
         for row in reader:
             sample_id = row["SampleID"].strip()
             if not sample_id:
                 continue
-            
+
             outcome = row["Outcome"].strip()
             response_group = row.get("ResponseGroup", "").strip()
             days_str = row.get("DaysElapsed", "0").strip()
             days_elapsed = int(days_str) if days_str else 0
-            
+
             info = PatientInfo(
                 sample_id=sample_id,
                 outcome=outcome,
@@ -56,14 +57,14 @@ def load_patient_info(csv_path: str | Path) -> Dict[str, PatientInfo]:
                 days_elapsed=days_elapsed,
                 label=1 if outcome == "Responder" else 0,
             )
-            
+
             patients[sample_id] = info
-            
+
             # Also map base ID
             base_id = sample_id.split("_")[0]
             if base_id not in patients or "_reimage" in sample_id:
                 patients[base_id] = info
-    
+
     return patients
 
 

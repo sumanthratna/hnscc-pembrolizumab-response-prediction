@@ -14,10 +14,10 @@ from gcsfs import GCSFileSystem
 def get_base_sample_id(sample_id: str) -> str:
     """
     Extract base sample ID from folder name.
-    
+
     The folder name may include suffixes like _reimage, _section2, _1, _2, etc.
     but the actual files inside use the base ID (e.g., PIO9, PIO26, PIO51).
-    
+
     Examples:
         PIO9_1_reimage -> PIO9
         PIO26_reimage -> PIO26
@@ -25,7 +25,7 @@ def get_base_sample_id(sample_id: str) -> str:
         PIO1 -> PIO1
     """
     # Match pattern: PIO followed by digits, then optional suffixes
-    match = re.match(r'^(PIO\d+)', sample_id)
+    match = re.match(r"^(PIO\d+)", sample_id)
     if match:
         return match.group(1)
     return sample_id
@@ -134,7 +134,7 @@ def enumerate_fovs(
     base_id = get_base_sample_id(sample_id)
     # Format: {base_id}_cycle{cycle}_w{channel}_{fov}_t1.TIF
     pattern = f"{base_id}_cycle{cycle}_w{channel}_"
-    
+
     fov_ids = set()
 
     for file_path in files:
